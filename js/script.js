@@ -15,6 +15,21 @@ while (randomNumbers.length < 5) {
 }
 console.log(randomNumbers);
 
+// Faccio partire un timer di 30 secondi
+let seconds = 10;
+const userNumberChoose = [];
+const userNumber = ``;
+const countDown = setInterval(function(){
+    seconds--;
+    console.log(seconds);
+    if(seconds === 0) {
+        clearInterval(countDown);
+        while (userNumberChoose.lenght < 5) {
+            userNumber = parseInt(prompt(`Digita un numero rispetto a quelli mostrati`));
+        }
+    }
+},1000);
+
 // FUNCTIONS
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
