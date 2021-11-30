@@ -20,31 +20,26 @@ while (randomNumbers.length < 5) {
 }
 console.log(randomNumbers);
 
-// Creo un array vuoto che andrò a popolare con i numeri inseriti dall'utente
-const userNumberChoose = [];
 // Comunico all'utente che tra 30 secondi gli chiederò di scrivere i numeri
 alert(`Bene, adesso hai 30 secondi per riflettere sui numeri che hai appena visualizzato`);
+
+// Creo un array vuoto che andrò a popolare con i numeri inseriti dall'utente
+const userNumberChoose = [];
+
 // Faccio partire un timer di 30 secondi
-let seconds = 10;
-const countDown = setInterval(function(){
-    seconds--;
-    console.log(seconds);
-    if(seconds === 0) {
-        clearInterval(countDown);
-        alert(`Premi OK ed inserisci i 5 numeri mostrati in precedenza`);
-        // Scaduto il timer chiedo all'utente di inserire 5 numeri
-        while (userNumberChoose.length < 5) {
-            const userNumber = parseInt(prompt(`Digita un numero rispetto a quelli mostrati`));
-            // Se il numero non è già stato insrrito lo pusho nell'array
-            if (!userNumberChoose.includes(userNumber)){
-                userNumberChoose.push(userNumber);
-            } else {
-                // Altrimenti se il numero è già stato inserito dall'utente comunico i numeri già inseriti
-                alert(`Hai già inserito: ` + userNumberChoose)
-            }
+setTimeout(function(){
+    while (userNumberChoose.length < 5) {
+        const userNumber = parseInt(prompt(`Digita un numero rispetto a quelli mostrati`));
+        // Se il numero non è già stato insrrito lo pusho nell'array
+        if (!userNumberChoose.includes(userNumber)){
+            userNumberChoose.push(userNumber);
+        } else {
+            // Altrimenti se il numero è già stato inserito dall'utente comunico i numeri già inseriti
+            alert(`Hai già inserito: ` + userNumberChoose)
         }
-    }
-},1000);
+    }    
+},10000);
+
 console.log(userNumberChoose);
 
 // Confronto le due array per avere il risultato di quanti ne ha indovinati
