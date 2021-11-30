@@ -37,15 +37,16 @@ setTimeout(function(){
             // Altrimenti se il numero è già stato inserito dall'utente comunico i numeri già inseriti
             alert(`Hai già inserito: ` + userNumberChoose)
         }
-    }    
+    }   
+    if (randomNumbers.length === userNumberChoose.length) {
+        alert(`Complimenti!!! Hai indovinato tutti i numeri`)
+    } 
 },10000);
 
 console.log(userNumberChoose);
 
 // Confronto le due array per avere il risultato di quanti ne ha indovinati
-if (randomNumbers.length === userNumberChoose.lenght) {
-    alert(`Complimenti!!! Hai indovinato tutti i numeri`)
-}
+
 
 
 // FUNCTIONS
