@@ -10,13 +10,13 @@ alert(`Ora ti mostrerò 5 numeri che dovrai memorizzare`);
 const randomNumbers = [];
 let showNumber;
 while (randomNumbers.length < 5) {
-    let showNumber = getRndInteger(1, 100);
-    // Mostro i 5 numeri
-    alert(showNumber);
-    // Pusho nell'array i 5 numeri
-    if(!randomNumbers.includes(showNumber)) {
-        randomNumbers.push(showNumber);
-    }
+	let showNumber = getRndInteger(1, 100);
+	// Mostro i 5 numeri
+	alert(showNumber);
+	// Pusho nell'array i 5 numeri
+	if (!randomNumbers.includes(showNumber)) {
+		randomNumbers.push(showNumber);
+	}
 }
 console.log(randomNumbers);
 
@@ -26,30 +26,36 @@ alert(`Bene, adesso hai 30 secondi per riflettere sui numeri che hai appena visu
 // Creo un array vuoto che andrò a popolare con i numeri inseriti dall'utente
 const userNumberChoose = [];
 
+// Creo un array dove inserisco i numeri indovinati
+const matchedNumbers = [];
+
 // Faccio partire un timer di 30 secondi
-setTimeout(function(){
-    while (userNumberChoose.length < 5) {
-        const userNumber = parseInt(prompt(`Digita un numero rispetto a quelli mostrati`));
-        // Se il numero non è già stato insrrito lo pusho nell'array
-        if (!userNumberChoose.includes(userNumber)){
-            userNumberChoose.push(userNumber);
-        } else {
-            // Altrimenti se il numero è già stato inserito dall'utente comunico i numeri già inseriti
-            alert(`Hai già inserito: ` + userNumberChoose)
-        }
-    }   
-    if (randomNumbers.length === userNumberChoose.length) {
-        alert(`Complimenti!!! Hai indovinato tutti i numeri`)
-    } 
-},10000);
-
-console.log(userNumberChoose);
-
-// Confronto le due array per avere il risultato di quanti ne ha indovinati
-
-
+setTimeout(function() {
+	while (userNumberChoose.length < 5) {
+		const userNumber = parseInt(prompt(`Digita un numero rispetto a quelli mostrati`));
+		// Se il numero non è già stato insrrito lo pusho nell'array
+		if (!userNumberChoose.includes(userNumber)) {
+			userNumberChoose.push(userNumber);
+		} else {
+			// Altrimenti se il numero è già stato inserito dall'utente comunico i numeri già inseriti
+			alert(`Hai già inserito: ` + userNumberChoose);
+		}
+	}
+	userNumberChoose.forEach((chooseNumber) => {
+		if (randomNumbers.includes(chooseNumber) && !matchedNumbers.includes(chooseNumber)) {
+			matchedNumbers.push(chooseNumber);
+		}
+	});
+	// Comunico all'utente la vittoria, quanti e quali numeri ha indovinato
+	if (matchedNumbers.length <= 0) {
+		alert(`Spiacente non hai indivonato nessun numero :(`);
+	} else if (matchedNumbers.length > 0) {
+		alert(`Hai indovinato il/i numero/i: "${matchedNumbers}"`);
+	}
+}, 1000);
+console.log(matchedNumbers);
 
 // FUNCTIONS
 function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-  }
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
